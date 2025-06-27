@@ -18,7 +18,7 @@ where
     try_downcast(body).unwrap_or_else(|body| {
         body.map_err(|e| crate::Error::Other {
             source: e.into(),
-            backtrace: Backtrace::capture(),
+            backtrace: Backtrace::new(),
         })
         .boxed()
     })

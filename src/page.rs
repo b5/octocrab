@@ -254,7 +254,7 @@ fn get_links(headers: &http::header::HeaderMap) -> crate::Result<HeaderLinks> {
     if let Some(link) = headers.get("Link") {
         let links = link.to_str().map_err(|err| crate::Error::Other {
             source: Box::new(err),
-            backtrace: snafu::Backtrace::capture(),
+            backtrace: snafu::Backtrace::new(),
         })?;
 
         for url_with_params in links.split(',') {

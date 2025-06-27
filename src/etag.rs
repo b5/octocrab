@@ -81,7 +81,7 @@ impl EntityTag {
                 .parse()
                 .map_err(|err: InvalidHeaderValue| crate::Error::InvalidHeaderValue {
                     source: err,
-                    backtrace: snafu::Backtrace::capture(),
+                    backtrace: snafu::Backtrace::new(),
                 })?,
         );
         Ok(())

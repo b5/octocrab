@@ -128,7 +128,7 @@ impl<'octo> UserHandler<'octo> {
                     errors: None,
                     message: "".to_string(),
                 }),
-                backtrace: Backtrace::capture(),
+                backtrace: snafu::Backtrace::new(),
             }),
             Err(_v) => Ok(()),
         }

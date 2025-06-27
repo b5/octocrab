@@ -128,7 +128,7 @@ impl<'octo> OrgSecretsHandler<'octo> {
                     status_code.as_str()
                 )
                 .into(),
-                backtrace: snafu::Backtrace::capture(),
+                backtrace: snafu::Backtrace::new(),
             }),
         }
     }

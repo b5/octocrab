@@ -358,7 +358,7 @@ pub async fn map_github_error(
                 errors,
                 message,
             }),
-            backtrace: Backtrace::capture(),
+            backtrace: Backtrace::new(),
         })
     }
 }
@@ -1107,7 +1107,7 @@ impl Octocrab {
             app_auth.clone()
         } else {
             return Err(Error::Installation {
-                backtrace: Backtrace::capture(),
+                backtrace: Backtrace::new(),
             });
         };
         Ok(Octocrab {
@@ -1607,7 +1607,7 @@ impl Octocrab {
             (app, installation, token)
         } else {
             return Err(Error::Installation {
-                backtrace: Backtrace::capture(),
+                backtrace: Backtrace::new(),
             });
         };
         let mut request = Builder::new();
@@ -1639,7 +1639,7 @@ impl Octocrab {
             .map(|time| {
                 DateTime::<Utc>::from_str(&time).map_err(|e| error::Error::Other {
                     source: Box::new(e),
-                    backtrace: snafu::Backtrace::capture(),
+                    backtrace: snafu::Backtrace::new(),
                 })
             })
             .transpose()?;
