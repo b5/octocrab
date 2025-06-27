@@ -36,14 +36,14 @@ pub enum Error {
         source: InvalidUri,
         backtrace: Backtrace,
     },
-    #[snafu(display("Installation Error: Github App authorization is required to target an installation.\n\nFound at {}", backtrace))]
+    #[snafu(display("Installation Error: Github App authorization is required to target an installation.\n\nFound at {:#?}", backtrace))]
     Installation { backtrace: Backtrace },
     InvalidHeaderValue {
         source: http::header::InvalidHeaderValue,
         backtrace: Backtrace,
     },
 
-    #[snafu(display("HTTP Error: {}\n\nFound at {}", source, backtrace))]
+    #[snafu(display("HTTP Error: {}\n\nFound at {:#?}", source, backtrace))]
     Http {
         source: http::Error,
         backtrace: Backtrace,
@@ -59,35 +59,35 @@ pub enum Error {
         backtrace: Backtrace,
     },
 
-    #[snafu(display("Service Error: {}\n\nFound at {}", source, backtrace))]
+    #[snafu(display("Service Error: {}\n\nFound at {:#?}", source, backtrace))]
     Service {
         source: BoxError,
         backtrace: Backtrace,
     },
 
-    #[snafu(display("Hyper Error: {}\n\nFound at {}", source, backtrace))]
+    #[snafu(display("Hyper Error: {}\n\nFound at {:#?}", source, backtrace))]
     Hyper {
         source: hyper::Error,
         backtrace: Backtrace,
     },
 
-    #[snafu(display("Serde Url Encode Error: {}\nFound at {}", source, backtrace))]
+    #[snafu(display("Serde Url Encode Error: {}\nFound at {:#?}", source, backtrace))]
     SerdeUrlEncoded {
         source: serde_urlencoded::ser::Error,
         backtrace: Backtrace,
     },
 
-    #[snafu(display("Serde Error: {}\nFound at {}", source, backtrace))]
+    #[snafu(display("Serde Error: {}\nFound at {:#?}", source, backtrace))]
     Serde {
         source: serde_json::Error,
         backtrace: Backtrace,
     },
-    #[snafu(display("JSON Error in {}: {}\nFound at {}", source.path(), source.inner(), backtrace))]
+    #[snafu(display("JSON Error in {}: {}\nFound at {:#?}", source.path(), source.inner(), backtrace))]
     Json {
         source: serde_path_to_error::Error<serde_json::Error>,
         backtrace: Backtrace,
     },
-    #[snafu(display("JWT Error in {}\nFound at {}", source, backtrace))]
+    #[snafu(display("JWT Error in {}\nFound at {:#?}", source, backtrace))]
     JWT {
         source: jsonwebtoken::errors::Error,
         backtrace: Backtrace,
