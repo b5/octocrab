@@ -158,7 +158,8 @@ pub struct GitUserTime {
 #[serde(rename_all = "snake_case")]
 pub struct CommitAuthor {
     pub name: String,
-    pub email: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub email: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub date: Option<DateTime<Utc>>,
 }
@@ -315,6 +316,8 @@ pub struct Release {
     pub body: Option<String>,
     pub draft: bool,
     pub prerelease: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub immutable: Option<bool>,
     pub created_at: Option<DateTime<Utc>>,
     pub published_at: Option<DateTime<Utc>>,
     pub author: Option<crate::models::Author>,
@@ -340,6 +343,7 @@ pub struct Asset {
     pub state: String,
     pub content_type: String,
     pub size: i64,
+    pub digest: Option<String>,
     pub download_count: i64,
     pub created_at: DateTime<Utc>,
     pub updated_at: DateTime<Utc>,
