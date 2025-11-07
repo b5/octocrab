@@ -1,7 +1,5 @@
 //! The users API.
 
-use std::backtrace::Backtrace;
-
 use http::StatusCode;
 
 pub use self::follow::{ListUserFollowerBuilder, ListUserFollowingBuilder};
@@ -128,7 +126,7 @@ impl<'octo> UserHandler<'octo> {
                     errors: None,
                     message: "".to_string(),
                 }),
-                backtrace: snafu::Backtrace::new(),
+                backtrace: snafu::Backtrace::capture(),
             }),
             Err(_v) => Ok(()),
         }
